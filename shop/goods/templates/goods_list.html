@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p><a href="{% url 'index' %}">Главная</a></p>
+    <p><a href="{% url 'add' %}">Добавить товар</a></p>
+   {% for good in object_list %}
+       <p>Наименование: {{ good.name }}</p>
+       <p>Цена: {{ good.price }}</p>
+       <p>Единица: {{ good.unit_of_price }}</p>
+       <p>Поставщик: {{ good.provider }}</p>
+       <p>Дата прибытия: {{ good.come_date }}</p>
+        <p>--------------------------------</p>
+    {% endfor %}
+
+
+{% endblock %}
