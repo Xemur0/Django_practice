@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
-{% block content %}
 
-   {% for good in goods %}
+
+{% block content %}
+<h2>Категория: {{ current_category.title }}</h2>
+
+
+    <div>
+        {% for good in goods %}
        <p>Наименование: {{ good.name }}</p>
        <p>Цена: {{ good.price }}</p>
        <p>Единица: {{ good.unit_of_price }}</p>
@@ -16,6 +21,6 @@
        </p>
         <p>--------------------------------</p>
     {% endfor %}
-
+    </div>
 
 {% endblock %}
