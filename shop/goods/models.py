@@ -18,7 +18,21 @@ class Good(models.Model):
     provider = models.CharField(max_length=64, verbose_name='Имя поставщика')
     unit_of_price = models.CharField(max_length=3, choices=CURRENCY_CHOICES,
                                      verbose_name='Единица измерения')
+    category = models.ManyToManyField('Category', blank=False,
+                                      verbose_name='Категория')
 
     class Meta:
         verbose_name_plural = 'Товары'
         verbose_name = 'Товар'
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=64)
+
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.title

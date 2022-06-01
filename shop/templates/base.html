@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Главная{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
-{% block content %}
 
-{% endblock %}
+<nav>
+    <p>User: {{ user.username }}</p>
+    <p>Superuser: {{ user.is_superuser }}</p>
+    <a href="{% url 'index' %}">Главная</a>
+    <a href="{% url 'add' %}">Добавить товар</a>
+    <a href="{% url 'list' %}">Полный список</a>
+
+    {% for category in categorys %}
+        <a href="{% url 'by_category' category.pk %}">{{ category.title }}</a>
+    {% endfor %}
+</nav>
+<section>
+    {% block content %}
+
+    {% endblock %}
+</section>
 </body>
 </html>
