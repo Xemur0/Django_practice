@@ -1,0 +1,5 @@
+2022-05-31 16:43:51,925 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-31 16:43:54,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-31 16:44:14,589 django.utils.autoreload INFO     /home/aleks/PycharmProjects/Django_practice/shop/shop/settings.py changed, reloading.
+2022-05-31 16:44:14,930 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-05-31 16:44:16,446 django.utils.autoreload INFO     Watching for file changes with StatReloader

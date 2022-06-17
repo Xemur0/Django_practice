@@ -1,5 +1,6 @@
 
 # Create your views here.
+from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic.detail import SingleObjectMixin
@@ -10,20 +11,29 @@ from .models import Good, Category
 
 class GoodsView(ListView):
     template_name = 'index.html'
-    queryset = Good.objects.all()
+    queryset = Good.current_site.all()
     context_object_name = 'goods'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categorys'] = Category.objects.all()
+        context['categorys'] = Category.current_site.all()
         return context
 
 
 class GoodsListView(ListView):
     template_name = 'goods_list.html'
-    queryset = Good.objects.prefetch_related('category').all()
+    # queryset = Good.current_site.prefetch_related('category').not_deleted().all()
+    queryset = Good.current_site.prefetch_related(
+        'category').all()
     # queryset = Good.objects.all()
     context_object_name = 'goods'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context.update({
+            'site': get_current_site(request=self.request)
+        })
+        return context
 
 
 class GoodCreateView(CreateView):
